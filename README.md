@@ -1,7 +1,5 @@
 Twitter Sentiment analysis.
 
-This application is suppose to fetch tweets of a particular user with a public access.
-
 How my function works:
 
 Use the Twitter API to fetch tweets for a particular user and save them in JSON file (for a given period e.g. 1 week or 1 month depending on the volume).
