@@ -64,7 +64,6 @@ class TwitterUser:
         c = Counter(word_list)
         return c.most_common(5)
 
-
 def main():
     tweet = TwitterUser()
     tweets = tweet.fetch_tweets()
