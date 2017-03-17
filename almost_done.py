@@ -3,7 +3,7 @@ import json
 # import pdb
 
 from watson_developer_cloud import AlchemyLanguageV1
-from  sentiment01 import Sentiment
+from sentiment01 import Sentiment
 from tqdm import tqdm
 from collections import Counter
 from twython import Twython, exceptions
@@ -19,15 +19,14 @@ class TwitterUser:
 
         self.twitter = Twython(api_key, api_secret, access_key, access_secret)
 
-    def user_id(self):
-        username = input("\nEnter user's Twitter handle: ")
+    def user_id(self, username):
+        # username = input("\nEnter user's Twitter handle: ")
         return username
 
     def fetch_tweets(self, username=''):
         try:
             username = self.user_id()
-            user_tweets = self.twitter.get_user_timeline(
-                screen_name=username, count=15)
+            user_tweets = self.twitter.get_user_timeline(screen_name=username, count=15)  #fetch tweets from this user
             tweet_text = []
             output= ' '
             bar = tqdm(total=int(len(user_tweets)))
@@ -35,7 +34,7 @@ class TwitterUser:
                 time.sleep(0.1)
                 tweet_text.append(tweets['text'])
                 output += (tweets['text']+'\n')
-                bar.update(1)
+                bar.update(1) #update bar progress
                 sentiment= Sentiment.getSentiment(tweets)
                 print (sentiment)
 
@@ -63,6 +62,7 @@ def main():
     print(tweets)
     print(word_count)
 
+v = TwitterUser()
 
 if __name__ == '__main__':
     main()
